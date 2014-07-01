@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+  <table-filter match-catalog="GED_DB2" match-name="Document"/>
+  <table-filter match-catalog="GED_DB2" match-name="Groupe"/>
+  <table-filter match-catalog="GED_DB2" match-name="History"/>
+  <table-filter match-catalog="GED_DB2" match-name="MotCle"/>
+  <table-filter match-catalog="GED_DB2" match-name="Repertory"/>
+  <table-filter match-catalog="GED_DB2" match-name="Roles"/>
+  <table-filter match-catalog="GED_DB2" match-name="SousRepertory"/>
+  <table-filter match-catalog="GED_DB2" match-name="TextPrivate"/>
+  <table-filter match-catalog="GED_DB2" match-name="TextPublic"/>
+  <table-filter match-catalog="GED_DB2" match-name="TypeDocument"/>
+  <table-filter match-catalog="GED_DB2" match-name="USER_ROLE"/>
+  <table-filter match-catalog="GED_DB2" match-name="User"/>
+</hibernate-reverse-engineering>

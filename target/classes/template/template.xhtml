@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>${title}</title>
+</h:head>
+<h:body>
+
+	<ui:debug />
+
+	<div id="head2">
+
+		<ui:insert name="head2">
+
+			<h:form>
+				<p:menubar>
+					<p:menuitem value="Home" outcome="/index.jsf" icon="ui-icon-home" />
+					
+						<p:submenu label="Bulletin Officiel" >
+							<p:menuitem value="Ajouter " action="#{bOBean.preparerAjoute}"
+								 icon="ui-icon-disk" />
+							<p:menuitem value="Mise à jour "
+								actionListener="#{bOBean.preparerMiseAjoure}"
+								icon="ui-icon-arrowrefresh-1-w" />
+						</p:submenu>
+
+
+					
+					<p:menuitem value="S'Enregistrer" outcome="/createUser.jsf"
+						icon="ui-icon-user" />
+					<p:menuitem value="Se connecter" outcome="/login.jsf"
+						icon="ui-icon-user" />
+
+					<p:menuitem value="Logout" icon="ui-icon-close"
+						style="margin-left: 500px; " url="/logout" />
+
+				</p:menubar>
+			</h:form>
+
+		</ui:insert>
+
+	</div>
+
+
+
+	<ui:insert name="body2">
+
+		<h3>bodytemp</h3>
+	</ui:insert>
+
+
+
+
+</h:body>
+
+
+
+</html>

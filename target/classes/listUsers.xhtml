@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>YGED</title>
+	<link href="./css/styles.css" rel="stylesheet" type="text/css" />
+	<!--  Assumes you have styles.css in WebContent/css/ -->
+</h:head>
+<h:body>
+<ui:composition template="/template/template.xhtml">
+
+	<ui:define name="body2">
+	<center>
+		<p:layout>
+			<p:layoutUnit position="center"
+				header="Liste de tous les utilisateur">
+				<h:form>
+					<p:dataTable var="user" value="#{userBean.users}" rows="10"
+						id="tbl" paginator="true"
+						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						rowsPerPageTemplate="5,10,15,20,25,30,50"
+						filteredValue="#{userBean.filterUsers}">
+						<p:column headerText="Identifiant">
+							<h:outputText value="#{user.userId}" />
+							<!-- <p:inputText id="globalFilter" onkeyup="PF('carsTable').filter()"
+								style="width:150px" placeholder="Enter keyword" /> -->
+						</p:column>
+
+						<p:column headerText="Nom" filterBy="#{user.userName}"
+							filterMatchMode="contains">
+							<h:outputText value="#{user.userName}" />
+
+						</p:column>
+
+						<p:column headerText="Email">
+							<h:outputText value="#{user.emailUser}" />
+						</p:column>
+
+						<p:column headerText="CNI">
+							<h:outputText value="#{user.cniUser}" />
+						</p:column>
+
+						<p:column headerText="Nationnalité">
+							<h:outputText value="#{user.nationUser}" />
+						</p:column>
+
+						<p:column headerText="Profession">
+							<h:outputText value="#{user.professionUser}" />
+						</p:column>
+						<p:column headerText="Modifier">
+							<h:commandLink value="Modifier"
+								action="#{userBean.preparerMiseAjour(user.getUserId())}" />
+						</p:column>
+						<p:column headerText="Supprimer">
+							<h:commandLink value="Delete"
+								action="#{userBean.preparerSuppression(user.getUserId())}" />
+						</p:column>
+
+
+					</p:dataTable>
+					<h:commandLink value="pdfffffff">
+						<!-- <p:graphicImage name="/demo/images/pdf.png" /> -->
+						<p:dataExporter type="pdf" target="tbl" fileName="cars"
+							pageOnly="true" />
+					</h:commandLink>
+				</h:form>
+			</p:layoutUnit>
+		</p:layout>
+	</center>
+	</ui:define>
+	</ui:composition>
+</h:body>
+</html>

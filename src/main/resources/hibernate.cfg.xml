@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://samsung/GED_DB</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+
+        <mapping class="models.User" /> 
+        <mapping class="models.Adminstrator" />
+        <mapping class="models.Document" />
+        <mapping class="models.History" />
+        <mapping class="models.Groupe" />
+        <mapping class="models.MotCle" />
+        <mapping class="models.Repertory" />
+        <mapping class="models.SousRepertory" />
+        <mapping class="models.TypeDocument" />  
+        <mapping class="models.TextPrivate" /> 
+        <mapping class="models.TextPublic" /> 
+        
+        
+    </session-factory>
+</hibernate-configuration>

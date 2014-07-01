@@ -1,0 +1,230 @@
+<ui:composition template="template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:sec="http://www.springframework.org/security/tags"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+	<ui:define name="body2">
+		<ui:param name="title" value="Ajouter un Bullin Officiel" />
+
+		<p:layout>
+			<p:layoutUnit position="west" size="100"></p:layoutUnit>
+			<p:layoutUnit position="center"
+				header="L'Ajoute d'un Nouveau Bulletin Officiel">
+				<p:fieldset legend="Details de bulletin officiel" toggleable="true"
+					toggleSpeed="500" id="fieldID">
+					<h1>saisissez les données de bulletin officiel</h1>
+					<h:form id="DocForm">
+						<p:growl id="growlnouv" showDetail="false" sticky="true" life="30" />
+
+
+						<h:panelGrid columns="2" cellpadding="15" id="panel1">
+
+							<h:outputLabel value="Identifiant: *" />
+							<p:inputText value="#{bOBean.idDocument}" required="true"
+								requiredMessage="Un Identifiant est nécessaire" />
+
+							<h:outputLabel value="Repertoire de Document: *" />
+							<p:inputText value="#{bOBean.repository}" required="true"
+								requiredMessage="Entrer SVP le repertoire de Document" />
+
+							<h:outputLabel value="Groupe: *" />
+							<p:inputText value="#{bOBean.groupe}" required="true"
+								requiredMessage="Entrer SVP le groupe de Bulletin Officiel" />
+
+
+
+							<h:outputLabel value="Thème de Bulletin : *" />
+							<p:inputText value="#{bOBean.themeDoc}"
+								requiredMessage=" théme de bulletin officiel nécessaire !"
+								required="true" />
+
+
+
+							<p:outputLabel for="button" value="Date de creation : *" />
+							<p:calendar id="button" value="#{bOBean.dateEdition}"
+								showOn="button" required="true" />
+
+
+
+							<p:outputLabel for="button3" value="Date Recu de bulletin: *" />
+							<p:calendar id="button3" value="#{bOBean.dateMiseAjour}"
+								showOn="button" required="true" />
+
+							<p:outputLabel for="button2" value="Date D'ajoute : *" />
+							<p:calendar id="button2" value="#{bOBean.dateIncertion}"
+								showOn="button" required="true" />
+
+
+							<h:outputLabel value="Taille de Bulletin : " />
+							<p:inputText value="#{bOBean.tailleDoc}" />
+
+							<h:outputLabel value="lien externe au bulletin : " />
+							<p:inputText value="#{bOBean.link}" />
+
+
+							<h:outputLabel value="Commentaire : " />
+							<p:inputTextarea value="#{bOBean.commentaire}" size="500" />
+
+						</h:panelGrid>
+
+						<p:commandButton value="valider " action="#{bOBean.ajouter}"
+							id="commandButtonID" />
+					</h:form>
+
+
+				</p:fieldset>
+
+				<h:panelGrid columns="6">
+
+					<p:spacer width="50" height="50" />
+					<h:form id="mainForm21">
+						<h:panelGrid columns="1">
+							<p:messages id="messages21" />
+
+
+							<h:panelGroup id="messageDetailGroup21" layout="block"
+								style="margin-right: 20px;">
+								<h:panelGrid id="messageDetail21" columns="1"
+									columnClasses="formColumn">
+
+									<h:outputText value="M0t Clé *" />
+									<p:inputText value="#{bOBean.libelle}" label="Text" />
+								</h:panelGrid>
+
+								<p:commandButton id="addMsgButton21"
+									value="Ajouter le mot clé" action="#{bOBean.ajouterMot}"
+									process="messageDetailGroup21"
+									update="messageDetail21 dataTable21 messages21"
+									style="margin-top: 20px;" icon="ui-icon-plusthick" />
+							</h:panelGroup>
+
+							<p:dataTable id="dataTable21" var="mot" value="#{bOBean.mots}"
+								paginator="true"
+								paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+								rows="5" rowsPerPageTemplate="5,10,15"
+								paginatorPosition="bottom">
+
+
+								<p:column sortBy="#{mot.libelle}" headerText="Mots Cles">
+									<h:outputText value="#{mot.libelle}" />
+								</p:column>
+
+							</p:dataTable>
+
+
+
+
+
+
+
+
+						</h:panelGrid>
+					</h:form>
+					<p:spacer width="50" height="50" />
+					<h:form id="mainForm2">
+
+						<h:panelGrid columns="1">
+							<p:messages id="messages2" />
+
+
+							<h:panelGroup id="messageDetailGroup2" layout="block"
+								style="margin-right: 20px;">
+								<h:panelGrid id="messageDetail2" columns="1"
+									columnClasses="formColumn">
+
+									<h:outputText value="Titre de text Privé *" />
+									<p:inputText value="#{bOBean.privTitle}" label="Text" />
+								</h:panelGrid>
+
+								<p:commandButton id="addMsgButton2"
+									value="Ajouter le titre privée"
+									action="#{bOBean.ajouterPrivTitleAuList}"
+									process="messageDetailGroup2"
+									update="messageDetail2 dataTable2 messages2"
+									style="margin-top: 20px;" icon="ui-icon-plusthick" />
+							</h:panelGroup>
+
+							<p:dataTable id="dataTable2" var="privmOT"
+								value="#{bOBean.privTitles}" paginator="true"
+								paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+								rows="5" rowsPerPageTemplate="5,10,15"
+								paginatorPosition="bottom">
+
+
+								<p:column sortBy="#{privmOT.titreTextPriv}" headerText="titres privés">
+									<h:outputText value="#{privmOT.titreTextPriv}" />
+								</p:column>
+
+							</p:dataTable>
+
+
+
+
+
+
+
+
+						</h:panelGrid>
+					</h:form>
+
+
+								<p:spacer width="50" height="50" />
+					<h:form id="mainForm23">
+						<h:panelGrid columns="1">
+							<p:messages id="messages23" />
+
+
+							<h:panelGroup id="messageDetailGroup23" layout="block"
+								style="margin-right: 20px;">
+								<h:panelGrid id="messageDetail23" columns="1"
+									columnClasses="formColumn">
+
+									<h:outputText value="Titre de text publique *" />
+									<p:inputText value="#{bOBean.txtpub}" label="Text" />
+								</h:panelGrid>
+
+								<p:commandButton id="addMsgButton23"
+									value="Ajouter le titre publique"
+									action="#{bOBean.ajouterTitrePubAuList}"
+									process="messageDetailGroup23"
+									update="messageDetail23 dataTable23 messages23"
+									style="margin-top: 20px;" icon="ui-icon-plusthick" />
+							</h:panelGroup>
+
+							<p:dataTable id="dataTable23" var="textpub"
+								value="#{bOBean.txtpubs}" paginator="true"
+								paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+								rows="5" rowsPerPageTemplate="5,10,15"
+								paginatorPosition="bottom">
+
+
+								<p:column sortBy="#{textpub.titreTexPub}" headerText="titres publiques">
+									<h:outputText value="#{textpub.titreTexPub}" />
+								</p:column>
+
+							</p:dataTable>
+
+
+
+
+
+
+
+
+						</h:panelGrid>
+					</h:form>
+				</h:panelGrid>
+							<p:spacer width="50" height="100" />
+				<p:commandButton value="Enregistrer " action="listBO" />
+			</p:layoutUnit>
+		</p:layout>
+
+
+
+	</ui:define>
+</ui:composition>

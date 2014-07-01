@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/security
+           http://www.springframework.org/schema/security/spring-security.xsd">
+
+
+	<global-method-security pre-post-annotations="enabled" />
+	<http use-expressions="true">
+		<!--  <intercept-url pattern="/listUsers**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/createUser**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/createBO**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/listBO**" access="hasRole('ROLE_USER')" />  -->
+		<form-login login-page="/login.xhtml" always-use-default-target="true"  authentication-failure-url="/error.xhtml" />
+		<logout logout-url="/logout"  />
+	</http>
+	<authentication-manager>
+		<authentication-provider>
+
+			 <!--  <user-service id="userDetailsService">
+				<user name="nour" password="123456" authorities="ROLE_USER, ROLE_ADMIN" />
+				<user name="iman" password="123456" authorities="ROLE_USER" />
+			</user-service>  -->
+
+			<!-- <password-encoder hash="bcrypt" /> -->
+
+		  <jdbc-user-service data-source-ref="dataSource"
+				authorities-by-username-query="select User.userName, Roles.name from User 
+				join user_roles on User.userID = user_roles.user_id 
+				join Roles on user_roles.role_id= Roles.roleId where User.userName = ?"
+				users-by-username-query="select userName,pwdUser,enabled from User where userName = ?" />  
+
+		</authentication-provider>
+	</authentication-manager>
+</beans:beans>

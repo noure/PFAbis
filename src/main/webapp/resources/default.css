@@ -1,0 +1,27 @@
+/* Document : style Created on : 28 avr. 2013, 00:34:32 Author : brahim Description: Purpose of the stylesheet follows. */
+h1 {
+	font: 300%/1.15 "Georgia", serif;
+	letter-spacing: 3px;
+	margin: 0px;
+	padding: 40px 0px 5px 160px;
+	margin-bottom: 30px;
+	font-weight: bold;
+}
+
+.ui-state-default .icon-add {
+	background-image: url(../img/ajouter.jpeg);
+}
+
+.image {
+	background: url(../img/cancele.png) no-repeat top left;
+	background-image: url(../img/ajouter.jpeg);
+}
+
+.disk {
+	width: 35px;
+	height: 20px;
+	padding: 0px 0px 0px 0px;
+	background-position: inherit;
+	background: url(../img/cancele.png) !important;
+	background-image: url(../img/cancele.png);
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<link href="../resources/css/style.css" rel="stylesheet"
+		type="text/css" />
+</h:head>
+<body>
+
+	<ui:composition template="template/template.xhtml">
+
+		<ui:define name="body2">
+
+			<p:layout>
+				<p:layoutUnit position="west" size="500">
+				
+				<p:graphicImage name="/images/gestion-documentaire.jpg"/>
+				</p:layoutUnit>
+				<p:layoutUnit position="center"
+					header="L'Ajoute d'un Nouveau Utilisateur">
+					<centre>Veillez saisir vos information afin de s'enregistrer dans notre base de donner</centre> 
+					<h:form id="FirstForm">
+						<p:growl id="growlnouv" showDetail="false" sticky="true" life="30" />
+
+						<h:panelGrid columns="2" cellpadding="15">
+
+							<h:outputLabel value="Nom d'utilisateur: *" />
+							<p:inputText value="#{userBean.userName}" required="true"
+								requiredMessage="Entrer Votre Nom " />
+
+							<h:outputLabel value="L'Email de l'utilisateur: *"  />
+							<p:inputText id="email" value="#{userBean.emailUser}"
+								required="true" label="L'Email"
+								requiredMessage="S'il vous plait entrer votre Email."
+								validatorMessage="Invalide format d'Email ">
+
+								<f:validateRegex
+									pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+								<p:watermark for="email" value=" Address Email " />
+							</p:inputText>
+
+							<h:outputLabel value="CNI de l'utilisateur : *" />
+							<p:inputText value="#{userBean.cniUser}" required="true"
+								requiredMessage="Entrer Votre CNI " />
+							<h:outputLabel value="Nationnalité de l'utilisateur: * " />
+							<p:inputText value="#{userBean.nationUser}" required="true"
+								requiredMessage="Entrer Votre Nationnalité SVP " />
+							<h:outputLabel value="Profession de l'utilisateur: *" />
+							<p:inputText value="#{userBean.professionUser}" required="true"
+								requiredMessage="Entrer Votre Profession SVP " />
+							<h:outputLabel value=" Mot de passe de l'utilisateur : *" />
+							<h:inputSecret value="#{userBean.pwdUser}" required="true"
+								requiredMessage="Entrer Votre Password SVP " />
+								<h:outputLabel value="Confirmer votre mot de passe : *" />
+								<h:inputSecret value="#{userBean.pwdUserVerfi}" required="true"
+								requiredMessage="Votre password doit être le même  " />
+
+							<p:commandButton value="Ajouter" action="#{userBean.ajouter}"
+								update="growlnouv,FirstForm" />
+							<p:commandButton value="Annuler" action="#{userBean.retour}" />
+						
+						</h:panelGrid> - </h:form>
+
+				</p:layoutUnit>
+				</p:layout>
+		</ui:define>
+	</ui:composition>
+
+</body>
+</html>

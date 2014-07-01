@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>YGED</title>
+	<link href="./css/styles.css" rel="stylesheet" type="text/css" />
+	<!--  Assumes you have styles.css in WebContent/css/ -->
+</h:head>
+<h:body>
+	<ui:composition template="/template/template.xhtml">
+
+		<ui:define name="body2">
+			<center>
+				<p:layout>
+					<p:layoutUnit position="center"
+						header="Liste de tous les utilisateur">
+						<h:form>
+							<p:dataTable var="doc" value="#{bOBean.documents}" rows="10"
+								id="tbl" paginator="true"
+								paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+								rowsPerPageTemplate="5,10,15,20,25,30,50">
+								<!-- filteredValue="#{userBean.filterUsers} -->
+								<p:column headerText="Identifiant De Bulletin"
+									filterBy="#{doc.idDocument}" filterMatchMode="contains">
+									<h:outputText value="#{doc.idDocument}" />
+
+								</p:column>
+
+								<p:column headerText="Repertoire"
+									filterBy="#{doc.repertory.nameRepertory}"
+									filterMatchMode="contains">
+									<h:outputText value="#{user.userName}" />
+
+								</p:column>
+
+								<p:column headerText="Date d'Ajoute">
+									<h:outputText value="#{doc.dateIncertion}" />
+								</p:column>
+
+								<p:column headerText="Date de Recevoir">
+									<h:outputText value="#{doc.dateMiseAjour}" />
+								</p:column>
+
+								<p:column headerText="Lien externe ">
+									<h:outputText value="#{doc.link}" />
+								</p:column>
+
+								<p:column headerText="Commentaire">
+									<h:outputText value="#{doc.commentaire}" />
+								</p:column>
+
+								<p:column headerText="Operation">
+									<h:commandLink value=" Consulter Ou Modifier"
+										action="#{bOBean.preparerMiseAjour(doc.getIdDocument())}" /> &nbsp;
+									
+									<h:commandLink  value="Supprimer"  action="#{bOBean.preparerSuppression(doc.getIdDocument())}" styleClass="button" />
+									
+								</p:column>
+
+
+							</p:dataTable>
+							<h:commandLink value="PDF">
+								<!-- <p:graphicImage name="/demo/images/pdf.png" /> -->
+								<p:dataExporter type="pdf" target="tbl" fileName="cars"
+									pageOnly="true" />
+							</h:commandLink>
+						</h:form>
+					</p:layoutUnit>
+				</p:layout>
+			</center>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

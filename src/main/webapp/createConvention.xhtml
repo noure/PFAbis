@@ -1,0 +1,195 @@
+<ui:composition template="template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:sec="http://www.springframework.org/security/tags"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+	<ui:define name="body2">
+		<ui:param name="title" value="Ajouter un Bullin Officiel" />
+
+		<h:form>
+
+			<p:growl id="growl" sticky="true" showDetail="true" />
+
+			<p:wizard flowListener="#{conventionBean.onFlowProcess}"
+				showNavBar="true">
+				<p:tab id="personnal" title="Information General">
+					<p:panel header="Information General">
+						<p:messages />
+						<h:panelGrid columns="2" columnClasses="label, value">
+							<h:outputLabel value="Titre : *" />
+							<p:inputText value="#{conventionBean.titre}" required="true"
+								requiredMessage="Le titre est nécessaire" />
+
+
+							<h:outputLabel value="Engagement de Municipale : " />
+							<p:inputText value="#{conventionBean.engagement_muni}"
+								required="true"
+								requiredMessage="Engagement de Municipale est nécessaire" />
+
+							<p:outputLabel for="button" value="Date de debut : *" />
+							<p:calendar id="button" value="#{conventionBean.debut}"
+								showOn="button" required="true" />
+
+
+
+							<p:outputLabel for="button2" value="Date de fin : *" />
+							<p:calendar id="button2" value="#{conventionBean.fin}"
+								showOn="button" required="true" />
+
+
+
+						</h:panelGrid>
+					</p:panel>
+				</p:tab>
+
+				<p:tab id="membres" title="Membres">
+					<p:panel header="Membre Participant">
+						<p:messages />
+
+						<p:outputLabel value="Membres Participant en convention" />
+						<p:inputText value="#{conventionBean.membre}" />
+						<p:commandButton value="Ajouter"
+							action="#{conventionBean.ajouterMembre}" />
+						<p:dataTable id="dataTable2" var="mem" 
+							value="#{conventionBean.membres}" paginator="true"
+							paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+							rows="5" rowsPerPageTemplate="5,10,15" paginatorPosition="bottom">
+
+
+							<p:column sortBy="#{mem.nom}" headerText="Subject">
+								<h:outputText value="#{mem.nom}" />
+							</p:column>
+							<p:column>
+
+								<p:commandButton value="ajouter l'engagement de membre"
+									onclick="PF('dlg3').show();" />
+
+
+							</p:column>
+
+						</p:dataTable>
+						<p:dialog header="Engagement" widgetVar="dlg3" showEffect="explode"
+							hideEffect="bounce" height="100">
+							<h:outputText value="Engagement de Membre" />
+							<h:panelGrid columns="1">
+								<p:messages id="messages" />
+
+
+
+								<h:panelGroup id="messageDetailGroup" layout="block"
+									style="margin-right: 20px;">
+									<h:panelGrid id="messageDetail" columns="1"
+										columnClasses="formColumn">
+										<h:outputText
+											value="Engagements de membre " />
+										<p:inputText value="#{conventionBean.eng1}" label="Engagement" />
+									</h:panelGrid>
+								</h:panelGroup>
+								<p:commandButton id="addMsgButton" value="Ajouter l'engagement"
+									action="#{conventionBean.ajouterEngagement}"
+									process="messageDetailGroup"
+									update="messageDetail dataTable messages"
+									style="margin-top: 20px;" icon="ui-icon-plusthick" />
+
+
+								<p:dataTable id="dataTable" var="mot" emptyMessage="aucun donné a été saisi" 
+									value="#{conventionBean.engagementList1}" paginator="true"
+									paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+									rows="5" rowsPerPageTemplate="5,10,15"
+									paginatorPosition="bottom">
+
+									<p:column sortBy="#{mot.obligation}" headerText="Obligations">
+										<h:outputText value="#{mot.obligation}" />
+									</p:column>
+									<p:column>
+										<p:commandLink value="Supprimer" />
+									</p:column>
+
+								</p:dataTable>
+
+
+
+
+
+
+							</h:panelGrid>
+						</p:dialog>
+
+					</p:panel>
+				</p:tab>
+
+				<p:tab id="Objectifs" title="Objectifs">
+					<p:panel header="Objectifs de Convention">
+
+
+
+						<h:form id="mainForm">
+							
+
+							<h:panelGrid columns="1">
+								<p:messages id="messages2" />
+
+
+
+								<h:panelGroup id="messageDetailGroup2" layout="block"
+									style="margin-right: 20px;">
+									<h:panelGrid id="messageDetail2" columns="2"
+										columnClasses="formColumn">
+
+										<h:outputText
+											value="Engagements de #{conventionBean.membres.get(0).getNom() } *" />
+										<p:inputText value="#{conventionBean.eng2}" label="Engagement" />
+									</h:panelGrid>
+								</h:panelGroup>
+								<p:commandButton id="addMsgButton2" value="Ajouter l'Engagement"
+									action="#{conventionBean.ajouterEngagementbis}"
+									process="messageDetailGroup2"
+									update="messageDetail2 dataTable2 messages2"
+									style="margin-top: 20px;" icon="ui-icon-plusthick" />
+
+
+								<p:dataTable id="dataTable2" var="mot"
+									value="#{conventionBean.engagementList2}" paginator="true"
+									paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+									rows="5" rowsPerPageTemplate="5,10,15"
+									paginatorPosition="bottom">
+
+									<p:column sortBy="#{mot.obligation}" headerText="Obligations">
+										<h:outputText value="#{mot.obligation}" />
+									</p:column>
+
+								</p:dataTable>
+
+
+
+
+
+
+							</h:panelGrid>
+
+						</h:form>
+
+
+
+
+
+
+					</p:panel>
+				</p:tab>
+
+				<p:tab id="confirm" title="Confirmation">
+					<p:panel header="Confirmation">
+						<!--   <p:commandButton value="Submit" actionListener="#{userWizard.save}" update="growl" process="@this"/> -->
+					</p:panel>
+				</p:tab>
+			</p:wizard>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>
