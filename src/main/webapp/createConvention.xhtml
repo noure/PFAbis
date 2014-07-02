@@ -78,8 +78,9 @@
 						</p:dataTable>
 
 						<p:dialog header="Engagement" widgetVar="dlg3"
-							showEffect="explode" hideEffect="bounce" height="100">
+							showEffect="explode" hideEffect="bounce" height="300px" width="400px" appendToBody="true">
 							<h:form>
+
 								<center>
 
 									<h:panelGrid columns="1">
@@ -152,19 +153,19 @@
 										columnClasses="formColumn">
 
 										<h:outputText
-											value="Engagements de #{conventionBean.membres.get(0).getNom() } *" />
+											value="Objectifs de conventions: *" /><br/>
 										<p:inputText value="#{conventionBean.eng2}" label="Engagement" />
 									</h:panelGrid>
 								</h:panelGroup>
-								<p:commandButton id="addMsgButton2" value="Ajouter l'Engagement"
-									action="#{conventionBean.ajouterEngagementbis}"
+								<p:commandButton id="addMsgButton2" value="Ajouter un objectif"
+									action="#{conventionBean.ajouterObjectifs}"
 									process="messageDetailGroup2"
 									update="messageDetail2 dataTable2 messages2"
 									style="margin-top: 20px;" icon="ui-icon-plusthick" />
 
 
 								<p:dataTable id="dataTable2" var="mot"
-									value="#{conventionBean.engagementList2}" paginator="true"
+									value="#{conventionBean.objectifs}" paginator="true"
 									paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 									rows="5" rowsPerPageTemplate="5,10,15"
 									paginatorPosition="bottom">

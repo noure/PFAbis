@@ -15,9 +15,11 @@ import org.springframework.stereotype.Component;
 
 import com.ensa.ged.model.Convention;
 import com.ensa.ged.model.Membre;
+import com.ensa.ged.model.Objectif;
 import com.ensa.ged.model.Obligation;
 import com.ensa.ged.service.IConventionService;
 import com.ensa.ged.service.IMembreService;
+import com.ensa.ged.service.IObjectifService;
 import com.ensa.ged.service.IObligationService;
 
 @Component("conventionBean")
@@ -32,6 +34,8 @@ public class ConventionBean implements Serializable {
 	IMembreService membreService;
 	@Autowired
 	IObligationService engagmentService;
+	@Autowired
+	IObjectifService objectifService;
 
 	private String titre;
 	private Date debut;
@@ -45,6 +49,8 @@ public class ConventionBean implements Serializable {
 	private List<Convention> conventions = new ArrayList<>();
 	private List<Obligation> engagementList1 = new ArrayList<Obligation>();
 	private List<Obligation> engagementList2 = new ArrayList<Obligation>();
+	private List<Objectif> objectifs = new ArrayList<>();
+	
 
 	Membre membre1 = new Membre();
 	Membre membre2 = new Membre();
@@ -70,6 +76,19 @@ public class ConventionBean implements Serializable {
 
 	}
 
+	
+	
+	public void ajouterObjectifs() {
+		System.out.println(":::::::::::::::::::::::::::Ajoute D'eobjectifs de convetion ::::::::::::::::::::::::::::::");
+		Objectif objectif=new Objectif();
+		objectif.setObjectif(eng2);
+		objectif.setConvention(convention);
+		objectifService.create(objectif);
+		objectifs.add(objectif);
+		
+
+	}
+	
 	public void ajouterMembre() {
 		System.out.println("::::::: ajoute de memebre :::::::::");
 		Membre mem = new Membre();
@@ -273,6 +292,14 @@ public class ConventionBean implements Serializable {
 
 	public void setEngagementList2(List<Obligation> engagementList2) {
 		this.engagementList2 = engagementList2;
+	}
+
+	public List<Objectif> getObjectifs() {
+		return objectifs;
+	}
+
+	public void setObjectifs(List<Objectif> objectifs) {
+		this.objectifs = objectifs;
 	}
 
 }
