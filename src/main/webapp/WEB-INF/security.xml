@@ -13,7 +13,7 @@
 		<intercept-url pattern="/createUser**" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/createBO**" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/listBO**" access="hasRole('ROLE_USER')" />  -->
-		<form-login login-page="/login.xhtml" always-use-default-target="true"  authentication-failure-url="/error.xhtml" />
+		<form-login login-page="/loginbis.xhtml" always-use-default-target="true"  authentication-failure-url="/error.xhtml" />
 		<logout logout-url="/logout"  />
 	</http>
 	<authentication-manager>

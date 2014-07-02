@@ -8,39 +8,34 @@
 
 	<ui:define name="body2">
 
-		<ui:param name="title" value="Login page" />
-		<p:layout >
+		<ui:param name="title" value="page d'accuille" />
+		<p:layout>
 
 			<p:layoutUnit position="center">
-				<p:graphicImage src="/resources/images/login.jpg" />
+				<strong> Objectifs de notre  GED ?</strong> <br/>
 
-				<h:form id="login"
-					onsubmit="document.getElementById('login').action='/PFAbis/j_spring_security_check';"
-					prependId="false">
-					<p:panelGrid>
-						<p:row>
-							<p:column>
-							Nom D'utilisateur*:
-						</p:column>
-							<p:column>
-								<p:inputText id="j_username" />
-							</p:column>
-						</p:row>
-						<p:row>
-							<p:column>
-							Mot de Passe*:
-						</p:column>
-							<p:column>
-								<p:password id="j_password" />
-							</p:column>
-						</p:row>
-						<p:row>
-							<p:column colspan="2">
-								<p:commandButton value="Sign in" ajax="false" />
-							</p:column>
-						</p:row>
-					</p:panelGrid>
-				</h:form>
+> <strong>Centralisation de l’information </strong><br/>
+
+Conservation de l’ensemble des documents (contrats, factures, courriers, emails, etc.) dans un système unique et centralisé :
+- Gain de place grâce à l’informatisation des archives
+- Gain de réactivité grâce à la consultation de tous les documents instantanément
+-Gain de qualité, car il n’y a plus de risque de perdre des informations ou de transmettre des documents erronés (ou non mis à jour)
+<br/>
+> <strong>Accès à l’information</strong> <br/>
+
+- Gain de temps grâce à la recherche instantanée des documents 
+- Gain de mobilité car depuis n'importe quel ordinateur, smartphone ou tablette, on accède à toute la documentation
+- Gain de sécurité et de confidentialité<br/>
+
+> <strong>Informatisation des processus documentaires</strong> <br/>
+
+Les processus utilisés dans l'entreprise, comme par exemple la validation des factures fournisseurs, peuvent facilement être pris en charge par le système de GED :
+<br/>
+- Gain de temps : chaque personne sait en permanence quelles sont ses tâches<br/>
+- Gain de traçabilité : vue synthétique de l’ensemble des documents soumis au circuit de validation<br/>
+- Gain de Qualité de par l'assurance que le processus est bien suivi.<br/>
+
+De manière globale, l’exploitation d’une solution de GED renforce la productivité des collaborateurs et contribue sensiblement à la génération de gains financiers, grâce à l’économie de temps réalisée sur le classement, la recherche et la diffusion des documents.
 			</p:layoutUnit>
 		</p:layout>
 

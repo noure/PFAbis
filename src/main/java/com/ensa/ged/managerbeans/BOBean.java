@@ -194,7 +194,7 @@ public class BOBean  implements Serializable {
 		privTitles.add(txtpr);
 		FacesContext fc = FacesContext.getCurrentInstance();  
         fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Le titre de text privé a été ajouter ", null));
-
+        privTitle="";   	
 	}
 
 	public void ajouterTitrePubAuList() {
@@ -206,7 +206,7 @@ public class BOBean  implements Serializable {
 		txtpubs.add(txp);
 		FacesContext fc = FacesContext.getCurrentInstance();  
         fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Le titre publique a été ajouter ", null));
-
+        txtpub="";
 	}
 
 	public List<TextPrivate> getPrivTitles() {
