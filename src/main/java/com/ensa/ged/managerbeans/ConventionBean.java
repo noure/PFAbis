@@ -89,6 +89,7 @@ public class ConventionBean implements Serializable {
 
 	}
 	public void deleteMembre(long idMembre){
+		System.out.println(":::::::::::suppression d'un membre:::::::::::::::");
 		
 		membreService.deleteById(idMembre);
 	}
