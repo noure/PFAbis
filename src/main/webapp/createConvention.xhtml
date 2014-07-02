@@ -51,11 +51,12 @@
 					<p:panel header="Membre Participant">
 						<p:messages />
 
-						<p:outputLabel value="Membres Participant en convention :" /><br/>
+						<p:outputLabel value="Membres Participant en convention :" />
+						<br />
 						<p:inputText value="#{conventionBean.membre}" />
 						<p:commandButton value="Ajouter"
-							action="#{conventionBean.ajouterMembre}" update="dataTable2"/>
-						<p:dataTable id="dataTable2" var="mem" 
+							action="#{conventionBean.ajouterMembre}" update="dataTable2" />
+						<p:dataTable id="dataTable2" var="mem"
 							value="#{conventionBean.membres}" paginator="true"
 							paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 							rows="5" rowsPerPageTemplate="5,10,15" paginatorPosition="bottom">
@@ -66,60 +67,67 @@
 							</p:column>
 							<p:column>
 
-								<p:commandButton value="ajouter l'engagement de membre" action="#{conventionBean.findEngagmentByMembre(mem.getId())}"
+								<p:commandButton value="ajouter l'engagement de membre"
+									action="#{conventionBean.findEngagmentByMembre(mem.getId())}"
 									onclick="PF('dlg3').show();" />
-									
+
 
 
 							</p:column>
 
 						</p:dataTable>
-						
-						<p:dialog header="Engagement" widgetVar="dlg3" showEffect="explode"
-							hideEffect="bounce" height="100">
-							<center>
-							<h:panelGrid columns="1">
-								 <p:messages id="messages" /> 
+
+						<p:dialog header="Engagement" widgetVar="dlg3"
+							showEffect="explode" hideEffect="bounce" height="100">
+							<h:form>
+								<center>
+
+									<h:panelGrid columns="1">
+										<p:messages id="messages" />
 
 
 
-								<h:panelGroup id="messageDetailGroup" layout="block"
-									style="margin-right: 20px;">
-									<h:panelGrid id="messageDetail" columns="1"
-										columnClasses="formColumn">
-										<h:outputText
-											value="Engagements de membre " />
-										<p:inputText value="#{conventionBean.eng1}" label="Engagement" />
+										<h:panelGroup id="messageDetailGroup" layout="block"
+											style="margin-right: 20px;">
+											<h:panelGrid id="messageDetail" columns="1"
+												columnClasses="formColumn">
+												<h:outputText value="Engagements de membre " />
+												<p:inputText value="#{conventionBean.eng1}"
+													label="Engagement" />
+											</h:panelGrid>
+										</h:panelGroup>
+										<p:commandButton id="addMsgButton"
+											value="Ajouter l'engagement"
+											action="#{conventionBean.ajouterEngagement}"
+											process="messageDetailGroup"
+											update="messageDetail dataTable messages"
+											style="margin-top: 20px;" icon="ui-icon-plusthick" />
+
+
+										<p:dataTable id="dataTable" var="mot"
+											emptyMessage="aucun donné a été saisi"
+											value="#{conventionBean.engagementList1}" paginator="true"
+											paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+											rows="5" rowsPerPageTemplate="5,10,15"
+											paginatorPosition="bottom">
+
+											<p:column sortBy="#{mot.obligation}" headerText="Obligations">
+												<h:outputText value="#{mot.obligation}" />
+											</p:column>
+											<p:column>
+												<p:commandLink value="Supprimer" />
+											</p:column>
+
+										</p:dataTable>
+
+
+
+
+
+
 									</h:panelGrid>
-								</h:panelGroup>
-								<p:commandButton id="addMsgButton" value="Ajouter l'engagement"
-									action="#{conventionBean.ajouterEngagement}"
-									process="messageDetailGroup"
-									update="messageDetail dataTable messages"
-									style="margin-top: 20px;" icon="ui-icon-plusthick" />
-
-
-								<p:dataTable id="dataTable" var="mot" emptyMessage="aucun donné a été saisi" 
-									value="#{conventionBean.engagementList1}" paginator="true"
-									paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-									rows="5" rowsPerPageTemplate="5,10,15"
-									paginatorPosition="bottom">
-
-									<p:column sortBy="#{mot.obligation}" headerText="Obligations">
-										<h:outputText value="#{mot.obligation}" />
-									</p:column>
-									<p:column>
-										<p:commandLink value="Supprimer" />
-									</p:column>
-								
-								</p:dataTable>
-
-
-
-
-
-
-							</h:panelGrid></center>
+								</center>
+							</h:form>
 						</p:dialog>
 
 					</p:panel>
@@ -131,7 +139,7 @@
 
 
 						<h:form id="mainForm">
-							
+
 
 							<h:panelGrid columns="1">
 								<p:messages id="messages2" />
