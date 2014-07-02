@@ -122,7 +122,7 @@ public class ConventionBean implements Serializable {
 		this.affecter();
 		conventionService.create(convention);
 
-		init();
+		
 
 	}
 

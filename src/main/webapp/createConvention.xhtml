@@ -162,20 +162,22 @@
 
 				<p:tab id="confirm" title="Confirmation">
 					<p:panel header="Confirmation">
+					<p:outputLabel value =" Convention à enregistrer est ainsi : "/> 
 						<p:panelGrid columns="2">
-						<p:outputLabel value =" Convention à enregistrer est ainsi : "/> 
+						
 						<p:outputLabel value =" Sujet  de convention : "/> 
-						<p:inputText value="#{conventionBean.convention.titre}"></p:inputText>
+						<p:outputLabel value="#{conventionBean.convention.getTitre()}"/>
 						<p:outputLabel value =" Date de début : "/> 
-						<p:inputText value="#{conventionBean.convention.debut}"></p:inputText>
+						<p:outputLabel value="#{conventionBean.convention.getDebut()}"/>
 						<p:outputLabel value =" Date de fin : "/> 
-						<p:inputText value="#{conventionBean.convention.fin}"></p:inputText>
+						<p:outputLabel value="#{conventionBean.convention.getFin()}"/>
 						</p:panelGrid>
 						<p:panelGrid columns="1">
-						<p:outputLabel value="List des membres participants: "/>
+						<p><p:outputLabel value="List des membres participants: "/>
+						
 						<ui:repeat var="m" value="#{conventionBean.membres}" varStatus="status">
-						<p:outputLabel value="@ #{m.getNom()}" />
-						</ui:repeat>
+						<p:outputLabel value="* #{m.getNom()}" /><br/>
+						</ui:repeat></p>
 						</p:panelGrid>
 						
 					</p:panel>
