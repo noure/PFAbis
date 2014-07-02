@@ -70,7 +70,7 @@ public class ConventionBean implements Serializable {
 	}
 
 	public void ajouterMembre() {
-
+		System.out.println("::::::: ajoute de memebre :::::::::");
 		Membre mem = new Membre();
 		mem.setConvention(convention);
 		mem.setNom(membre);
@@ -90,11 +90,11 @@ public class ConventionBean implements Serializable {
 		}
 	}
 
-//	public void deleteMembre(long idMembre) {
-//		System.out.println(":::::::::::suppression d'un membre:::::::::::::::");
-//
-//		membreService.deleteById(idMembre);
-//	}
+	// public void deleteMembre(long idMembre) {
+	// System.out.println(":::::::::::suppression d'un membre:::::::::::::::");
+	//
+	// membreService.deleteById(idMembre);
+	// }
 
 	public void ajouter() {
 		System.out.println("::::ajoute de convention ::::");
@@ -146,14 +146,13 @@ public class ConventionBean implements Serializable {
 	public String onFlowProcess(FlowEvent event) {
 		System.out.println(event.getNewStep());
 		switch (event.getNewStep()) {
-		case "Membres":
+		case "membres":
 			ajouter();
 
 			break;
-		// case "Membres":
-		// ajouterMembre();
-		//
-		// break;
+		case "objectifs":
+			return event.getNewStep();
+
 		case "Engagements":
 
 			break;
