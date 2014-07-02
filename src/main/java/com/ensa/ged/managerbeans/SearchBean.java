@@ -17,7 +17,7 @@ import com.ensa.ged.service.ITextPrivateService;
 import com.ensa.ged.service.ITextPublicService;
 
 
-@Component
+@Component("rechercheBean")
 @Scope("session")
 public class SearchBean implements Serializable {
 
@@ -36,30 +36,54 @@ public class SearchBean implements Serializable {
 	 String motrechercher;
 	 String txtprivérechercher;
 	 String txtpublrechercher;
-	 List<MotCle> mots=new ArrayList<>();
-	 List<TextPrivate> txtprives=new ArrayList<>();
-	 List<TextPublic> txtpubls =new ArrayList<>();
+//	 List<MotCle> mots=new ArrayList<>();
+//	 List<TextPrivate> txtprives=new ArrayList<>();
+//	 List<TextPublic> txtpubls =new ArrayList<>();
 	 List<Document> docs=new ArrayList<>();
 	 
 	 
-	 public String rechercherParMot(String mot){
+	 public String rechercherParMot(){
 		
-		docs= motCleService.findByLibelle(mot);
+		docs= motCleService.findByLibelle(motrechercher);
 		
 		 return "result";
 		
 	 }
-	 public String rechercherParTxtPriv(String txtpriv){
+	 public String rechercherParTxtPriv(){
 		 
-		 docs=privateService.findByLibelle( txtpriv);
+		 docs=privateService.findByLibelle( txtprivérechercher);
 		return "result";
 		 
 		 
 	 }
-	public String rechercherParTxtPubl(String txtPubl){
+	public String rechercherParTxtPubl(){
 		
-		docs=publicService.findByLibelle(txtPubl);
+		docs=publicService.findByLibelle(txtpublrechercher);
 		return "result";
+	}
+	public String getMotrechercher() {
+		return motrechercher;
+	}
+	public void setMotrechercher(String motrechercher) {
+		this.motrechercher = motrechercher;
+	}
+	public String getTxtprivérechercher() {
+		return txtprivérechercher;
+	}
+	public void setTxtprivérechercher(String txtprivérechercher) {
+		this.txtprivérechercher = txtprivérechercher;
+	}
+	public String getTxtpublrechercher() {
+		return txtpublrechercher;
+	}
+	public void setTxtpublrechercher(String txtpublrechercher) {
+		this.txtpublrechercher = txtpublrechercher;
+	}
+	public List<Document> getDocs() {
+		return docs;
+	}
+	public void setDocs(List<Document> docs) {
+		this.docs = docs;
 	}
 	
 

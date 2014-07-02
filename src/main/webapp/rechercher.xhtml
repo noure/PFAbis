@@ -5,25 +5,43 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="body2">
-	<p:layout>
-	<p:layoutUnit position="west">
-	<p:graphicImage name="/images/Document search.jpg"/>
-	</p:layoutUnit>
-	
-	<p:layoutUnit position="center">
-	<p:panelGrid columns="3">
-	<h:outputText value ="rechercher dans GED par : "/> <br/> <br/>
-	<h:outputText value ="Mot clé :"/> <p:inputText value="#{searchBean.motrechercher}">  <p:commandButton value="Rechercher " action="#{searchBean.rechercherParMot}"/>
-	<h:outputText value ="Text privé :"/> <p:inputText value="#{searchBean.txtprivérechercher}"> <p:commandButton value="Rechercher " action="#{searchBean.rechercherParTxtPriv}"/>
-	<h:outputText value ="Text public :"/> <p:inputText value="#{searchBean.txtpublrechercher}"><p:commandButton value="Rechercher " action="#{searchBean.rechercherParTxtPubl}"/>
-	
-	</p:inputText>
-	
-	</p:inputText>
-	
-	
-	
-	</p:layout>
+		<p:layout>
+			<p:layoutUnit position="west" size="550px">
+				
+					<p:graphicImage value="resources/images/Document search.png"  />
+
+				
+
+				<!-- <p:graphicImage name="resources/images/home.png" height="500px" width="500px" /> -->
+			</p:layoutUnit>
+
+			<p:layoutUnit position="center">
+			<p:spacer width="50" height="100" />
+			<h:form>
+				<h:outputText value="rechercher dans GED par : " />
+				<br />
+				<br />
+				<p:panelGrid columns="3">
+
+					<h:outputText value="Mot clé :" />
+					<p:inputText value="#{rechercheBean.motrechercher}" />
+					<p:commandButton value="Rechercher "
+						action="#{rechercheBean.rechercherParMot}" />
+					<h:outputText value="Text privé :" />
+					<p:inputText value="#{rechercheBean.txtprivérechercher}" />
+					<p:commandButton value="Rechercher "
+						action="#{rechercheBean.rechercherParTxtPriv}" />
+					<h:outputText value="Text public :" />
+					<p:inputText value="#{rechercheBean.txtpublrechercher}" />
+					<p:commandButton value="Rechercher "
+						action="#{rechercheBean.rechercherParTxtPubl}" />
+
+
+
+
+				</p:panelGrid></h:form>
+			</p:layoutUnit>
+		</p:layout>
 
 
 
