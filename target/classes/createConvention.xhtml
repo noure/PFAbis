@@ -78,7 +78,7 @@
 						</p:dataTable>
 
 						<p:dialog header="Engagement" widgetVar="dlg3"
-							showEffect="explode" hideEffect="bounce" height="300px" width="400px" appendToBody="true">
+							showEffect="explode" hideEffect="bounce" height="300px" width="400px" appendTo="@(body)">
 							<h:form>
 
 								<center>
@@ -135,62 +135,29 @@
 				</p:tab>
 
 				<p:tab id="objectifs" title="Objectifs">
-					<p:panel header="Objectifs de Convention">
+				
+				
+				
+				<p:panel header="Objectifs de convention">
+						<p:messages />
+
+						<p:outputLabel value="Objectifs de  convention :" />
+						<br />
+						<p:inputText value="#{conventionBean.eng2}" />
+						<p:commandButton value="Ajouter"
+							action="#{conventionBean.ajouterObjectif}" update="dataTable2o" />
+						<p:dataTable id="dataTable2o" var="mem"
+							value="#{conventionBean.objectifs}" paginator="true"
+							paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+							rows="5" rowsPerPageTemplate="5,10,15" paginatorPosition="bottom">
 
 
+							<p:column sortBy="#{mem.objectif}" headerText="Objectifs">
+								<h:outputText value="#{mem.objectif}" />
+							</p:column>
+							
 
-						<h:form id="mainForm">
-
-
-							<h:panelGrid columns="1">
-								<p:messages id="messages2" />
-
-
-
-								<h:panelGroup id="messageDetailGroup2" layout="block"
-									style="margin-right: 20px;">
-									<h:panelGrid id="messageDetail2" columns="2"
-										columnClasses="formColumn">
-
-										<h:outputText
-											value="Objectifs de conventions: *" /><br/>
-										<p:inputText value="#{conventionBean.eng2}" label="Engagement" />
-									</h:panelGrid>
-								</h:panelGroup>
-								<p:commandButton id="addMsgButton2" value="Ajouter un objectif"
-									action="#{conventionBean.ajouterObjectifs}"
-									process="messageDetailGroup2"
-									update="messageDetail2 dataTable2 messages2"
-									style="margin-top: 20px;" icon="ui-icon-plusthick" />
-
-
-								<p:dataTable id="dataTable2" var="mot"
-									value="#{conventionBean.objectifs}" paginator="true"
-									paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-									rows="5" rowsPerPageTemplate="5,10,15"
-									paginatorPosition="bottom">
-
-									<p:column sortBy="#{mot.obligation}" headerText="Obligations">
-										<h:outputText value="#{mot.obligation}" />
-									</p:column>
-
-								</p:dataTable>
-
-
-
-
-
-
-							</h:panelGrid>
-
-						</h:form>
-
-
-
-
-
-
-					</p:panel>
+						</p:dataTable></p:panel>
 				</p:tab>
 
 				<p:tab id="confirm" title="Confirmation">

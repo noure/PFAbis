@@ -78,8 +78,8 @@ public class ConventionBean implements Serializable {
 
 	
 	
-	public void ajouterObjectifs() {
-		System.out.println(":::::::::::::::::::::::::::Ajoute D'eobjectifs de convetion ::::::::::::::::::::::::::::::");
+	public void ajouterObjectif() {
+		System.out.println(":::::::::::::::::::::::::::Ajoute D'objectifs de convention ::::::::::::::::::::::::::::::");
 		Objectif objectif=new Objectif();
 		objectif.setObjectif(eng2);
 		objectif.setConvention(convention);
@@ -174,9 +174,7 @@ public class ConventionBean implements Serializable {
 		case "objectifs":
 			return event.getNewStep();
 
-		case "Engagements":
-
-			break;
+		
 		default:
 			break;
 		}
