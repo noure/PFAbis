@@ -11,26 +11,23 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.ensa.ged.model.Membre;
-import com.ensa.ged.model.Membre;
 import com.ensa.ged.service.impl.MembreService;
 
 @Component("membreBean")
 @Scope("session")
-public class MembreBean implements Serializable{
+public class MembreBean implements Serializable {
 
-	
-	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	
+
 	@Autowired
-	MembreService  membreService;
- Membre membre;
- List<Membre> membres= new ArrayList<>();
- 
+	MembreService membreService;
+	String mem;
+	Membre membre = new Membre();
+	List<Membre> membres = new ArrayList<>();
+
 	@PostConstruct
 	public void init() {
 		membres = membreService.findAll();
@@ -40,20 +37,23 @@ public class MembreBean implements Serializable{
 	/**
 	 * prépare l'ajoute d'un nouveau utilisateur
 	 */
-	public String preparerAjoute() {
+	public void preparerAjoute() {
 
 		membre = new Membre();
-		return "creatUser";
 
 	}
 
-	public String ajouter() {
+	public void ajouter() {
 		this.affecter();
 		membreService.create(membre);
 
 		init();
-		setup();
-		return "listUsers";
+		mem = "";
+
+	}
+
+	private void affecter() {
+		membre.setNom(mem);
 
 	}
 
@@ -68,7 +68,7 @@ public class MembreBean implements Serializable{
 		membreService.update(membre);
 
 		init();
-		setup();
+
 		return "listUsers";
 	}
 
@@ -77,11 +77,11 @@ public class MembreBean implements Serializable{
 		return "deletUser";
 	}
 
-	public String supprimer() {
+	public void supprimer() {
 		membreService.delete(membre);
 
 		init();
-		setup();
-		return "listUsers";
+		
+		
 	}
 }
