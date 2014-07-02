@@ -59,7 +59,7 @@ public class ConventionBean implements Serializable {
 	}
 
 	public void ajouterEngagement() {
-		Obligation obligation1= new Obligation();
+		Obligation obligation1 = new Obligation();
 		obligation1.setObligation(eng1);
 		obligation1.setMembre(membres.get(1));
 		engagmentService.create(obligation1);
@@ -88,11 +88,23 @@ public class ConventionBean implements Serializable {
 		membres.add(mem);
 
 	}
-	public void deleteMembre(long idMembre){
-		System.out.println(":::::::::::suppression d'un membre:::::::::::::::");
+
+	
+	public void findEngagmentByMembre(long id){
 		
+		
+	}
+	
+	
+	
+	
+	
+	public void deleteMembre(long idMembre) {
+		System.out.println(":::::::::::suppression d'un membre:::::::::::::::");
+
 		membreService.deleteById(idMembre);
 	}
+
 	public void ajouter() {
 		// this.affecter();
 		conventionService.create(convention);
