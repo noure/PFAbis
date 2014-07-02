@@ -1,5 +1,7 @@
 package com.ensa.ged.service.impl;
 
+import java.io.Serializable;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,9 +12,13 @@ import com.ensa.ged.service.IConventionService;
 import com.ensa.ged.service.common.AbstractService;
 
 @Service
-public class ConventionService extends AbstractService<Convention> implements IConventionService {
+public class ConventionService extends AbstractService<Convention> implements IConventionService, Serializable {
 
-    @Autowired
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Autowired
     private IConventionDao dao;
 
     public ConventionService() {

@@ -62,52 +62,56 @@ public class ConventionBean implements Serializable {
 	public void ajouterEngagement() {
 		Obligation obligation1 = new Obligation();
 		obligation1.setObligation(eng1);
-		Membre currentMembre=membreService.findOne(currentMembreID);
+		Membre currentMembre = membreService.findOne(currentMembreID);
 		obligation1.setMembre(currentMembre);
 		engagmentService.create(obligation1);
 		engagementList1.add(obligation1);
 
 	}
 
-	
-
 	public void ajouterMembre() {
 
 		Membre mem = new Membre();
 		mem.setConvention(convention);
 		mem.setNom(membre);
-
+		membre = "";
 		membreService.create(mem);
 
 		membres.add(mem);
 
 	}
 
-	
-	public void findEngagmentByMembre(long id){
-		 currentMembreID=id;
-		Membre m1=membreService.findOne(id);
-		Set<Obligation> setObligation =m1.getObligations();
-		for(Obligation o: setObligation){
+	public void findEngagmentByMembre(long id) {
+		currentMembreID = id;
+		Membre m1 = membreService.findOne(id);
+		Set<Obligation> setObligation = m1.getObligations();
+		for (Obligation o : setObligation) {
 			engagementList1.add(o);
 		}
 	}
-	
-	
-	
-	
-	
-	public void deleteMembre(long idMembre) {
-		System.out.println(":::::::::::suppression d'un membre:::::::::::::::");
 
-		membreService.deleteById(idMembre);
-	}
+//	public void deleteMembre(long idMembre) {
+//		System.out.println(":::::::::::suppression d'un membre:::::::::::::::");
+//
+//		membreService.deleteById(idMembre);
+//	}
 
 	public void ajouter() {
-		// this.affecter();
+		System.out.println("::::ajoute de convention ::::");
+		this.affecter();
 		conventionService.create(convention);
 
 		init();
+
+	}
+
+	private void affecter() {
+		convention.setDebut(debut);
+		convention.setFin(fin);
+		convention.setTitre(titre);
+
+		convention.setObligationMuni(engagement_muni);
+		;
 
 	}
 
@@ -140,16 +144,16 @@ public class ConventionBean implements Serializable {
 	}
 
 	public String onFlowProcess(FlowEvent event) {
-
+		System.out.println(event.getNewStep());
 		switch (event.getNewStep()) {
-		case "Convention":
+		case "Membres":
 			ajouter();
 
 			break;
-		case "Membres":
-			ajouterMembre();
-
-			break;
+		// case "Membres":
+		// ajouterMembre();
+		//
+		// break;
 		case "Engagements":
 
 			break;
