@@ -136,10 +136,18 @@ public class ConventionBean implements Serializable {
 
 	}
 
+	public String documentNum(){
+		return "createFichier";
+	}
+	public String preparerAjout() {
+
+		
+		return "createConvention";
+	}
 	public String preparerMiseAjour(long userId) {
 
 		convention = conventionService.findOne(userId);
-		return "editUser";
+		return "editeConvention";
 	}
 
 	public String modifier() {
@@ -148,12 +156,12 @@ public class ConventionBean implements Serializable {
 
 		init();
 		convention = new Convention();
-		return "listUsers";
+		return "listConvention";
 	}
 
 	public String preparerSuppression(long userId) {
 		convention = conventionService.findOne(userId);
-		return "deletUser";
+		return "deletConvention";
 	}
 
 	public String supprimer() {
@@ -161,7 +169,7 @@ public class ConventionBean implements Serializable {
 
 		init();
 		convention = new Convention();
-		return "listUsers";
+		return "listConvention";
 	}
 
 	public String onFlowProcess(FlowEvent event) {

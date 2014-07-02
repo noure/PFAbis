@@ -161,7 +161,7 @@
 				</p:tab>
 
 				<p:tab id="confirm" title="Confirmation">
-					<p:panel header="Confirmation">
+					<p:panel header="Confirmation"><center>
 					<p:outputLabel value =" Convention à enregistrer est ainsi : "/> 
 						<p:panelGrid columns="2">
 						
@@ -178,7 +178,14 @@
 						<ui:repeat var="m" value="#{conventionBean.membres}" varStatus="status">
 						<p:outputLabel value="* #{m.getNom()}" /><br/>
 						</ui:repeat></p>
-						</p:panelGrid>
+						
+						
+						<p><p:outputLabel value="List des objectifs de convention: "/>
+						
+						<ui:repeat var="m" value="#{conventionBean.objectifs}" varStatus="status">
+						<p:outputLabel value="* #{m.getObjectif()}" /><br/>
+						</ui:repeat></p>
+						</p:panelGrid></center>
 						
 					</p:panel>
 				</p:tab>

@@ -11,141 +11,47 @@
 	<ui:define name="body2">
 		<ui:param name="title" value="Ajouter un Bullin Officiel" />
 
-<p:layout>
+		<p:layout>
 			<p:layoutUnit position="west" size="100"></p:layoutUnit>
 			<p:layoutUnit position="center"
 				header="L'Ajoute d'un Nouveau Convention">
-				<p:fieldset legend="Details de bulletin officiel" toggleable="true"
-					toggleSpeed="500" id="fieldID">
-					<h1>saisissez les données de bulletin officiel</h1>
-					<h:form id="DocForm">
-						<p:growl id="growlnouv" showDetail="false" sticky="true" life="30" />
+				<p:panel header="Consultation">
+					<center>
+						<p:outputLabel value=" Convention à enregistrer est ainsi : " />
+						<p:panelGrid columns="2">
+
+							<p:outputLabel value=" Sujet  de convention : " />
+							<p:outputLabel value="#{conventionBean.convention.getTitre()}" />
+							<p:outputLabel value=" Date de début : " />
+							<p:outputLabel value="#{conventionBean.convention.getDebut()}" />
+							<p:outputLabel value=" Date de fin : " />
+							<p:outputLabel value="#{conventionBean.convention.getFin()}" />
+						</p:panelGrid>
+						<p:panelGrid columns="1">
+							<p>
+								<p:outputLabel value="List des membres participants: " />
+
+								<ui:repeat var="m" value="#{conventionBean.membres}"
+									varStatus="status">
+									<p:outputLabel value="* #{m.getNom()}" />
+									<br />
+								</ui:repeat>
+							</p>
 
 
-						<h:panelGrid columns="2" cellpadding="15" id="panel1">
+							<p>
+								<p:outputLabel value="List des objectifs de convention: " />
 
-							<h:outputLabel value="Titre : *" />
-							<p:inputText value="#{conventionBean.titre}" required="true"
-								requiredMessage="Le titre est nécessaire" />
+								<ui:repeat var="m" value="#{conventionBean.objectifs}"
+									varStatus="status">
+									<p:outputLabel value="* #{m.getObjectif()}" />
+									<br />
+								</ui:repeat>
+							</p>
+						</p:panelGrid>
+					</center>
 
-
-							<h:outputLabel value="Engagement de Municipale : " />
-							<p:inputText value="#{conventionBean.engagement}" required="true"
-								requiredMessage="Engagement de Municipale est nécessaire" />
-
-							<p:outputLabel for="button" value="Date de debut : *" />
-							<p:calendar id="button" value="#{conventionBean.debut}"
-								showOn="button" required="true" />
-
-
-
-							<p:outputLabel for="button2" value="Date de fin : *" />
-							<p:calendar id="button" value="#{conventionBean.fin}"
-								showOn="button" required="true" />
-
-
-
-
-						</h:panelGrid>
-
-						<p:commandButton value="valider " action="#{conventionBean.ajouter}"
-							id="commandButtonID" />
-					</h:form>
-
-
-				</p:fieldset>
-
-				<h:panelGrid columns="3">
-					<h:form id="mainForm">
-						<h:panelGrid columns="1">
-							<p:messages id="messages" />
-
-
-
-							<h:panelGroup id="messageDetailGroup" layout="block"
-								style="margin-right: 20px;">
-								<h:panelGrid id="messageDetail" columns="2"
-									columnClasses="formColumn">
-
-									<h:outputText value="Objectif de Convention : *" />
-									<p:inputText value="#{conventionBean.objectif}" label="Objectif" />
-								</h:panelGrid>
-							</h:panelGroup>
-							<p:commandButton id="addMsgButton" value="Ajouter l'Objectif"
-								action="#{conventionsBean.ajouterObjectifAuList}"
-								process="messageDetailGroup"
-								update="messageDetail dataTable messages"
-								style="margin-top: 20px;" icon="ui-icon-plusthick" />
-
-
-							<p:dataTable id="dataTable" var="obj" value="#{conventionBean.objectifs}"
-								paginator="true"
-								paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-								rows="5" rowsPerPageTemplate="5,10,15"
-								paginatorPosition="bottom">
-
-								<p:column sortBy="#{obj.objectif}" headerText="Objectifs">
-									<h:outputText value="#{obj.objectif}" />
-								</p:column>
-
-							</p:dataTable>
-
-
-
-
-
-
-						</h:panelGrid>
-					</h:form>
-					<h:form id="mainForm2">
-						<h:panelGrid columns="1">
-							<p:messages id="messages2" />
-
-
-							<h:panelGroup id="messageDetailGroup2" layout="block"
-								style="margin-right: 20px;">
-								<h:panelGrid id="messageDetail2" columns="1"
-									columnClasses="formColumn">
-
-									<h:outputText value="Membres participant au convention :*" />
-									<p:inputText value="#{conventionBean.membre}" label="Membre" />
-								</h:panelGrid>
-
-								<p:commandButton id="addMsgButton2"
-									value="Ajouter le membre "
-									action="#{conventionBean.ajouterMembreAuList}"
-									process="messageDetailGroup2"
-									update="messageDetail2 dataTable2 messages2"
-									style="margin-top: 20px;" icon="ui-icon-plusthick" />
-							</h:panelGroup>
-
-							<p:dataList id="dataTable2" var="mem"
-								value="#{conventionBean.memebres}" paginator="true"
-								paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-								rows="5" rowsPerPageTemplate="5,10,15"
-								paginatorPosition="bottom">
-
-
-								<p:column sortBy="#{mem.nom}" headerText="Subject">
-									<h:outputText value="#{mem.nom}" />
-								</p:column>
-
-							</p:dataList>
-
-
-
-
-
-
-
-
-						</h:panelGrid>
-					</h:form>
-
-					
-				</h:panelGrid>
-
-				<p:commandButton value="Terminer " action="listBO" />
+				</p:panel>
 			</p:layoutUnit>
 		</p:layout>
 

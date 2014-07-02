@@ -25,11 +25,14 @@
 				<p:menuitem> <img src="resources/images/home-bloc-photo.png" height="50px" width="150px"/></p:menuitem>
 					<p:menuitem value="Home" outcome="/index.jsf" icon="ui-icon-home" />
 					
-						<p:submenu label="Bulletin Officiel" >
-							<p:menuitem value="Ajouter " action="#{bOBean.preparerAjoute}"
-								 icon="ui-icon-disk" />
-							<p:menuitem value="Mise à jour "
-								actionListener="#{bOBean.preparerMiseAjoure}"
+						<p:submenu label="Gestion des Documents" >
+							<p:menuitem value="Bulletin Officiel " outcome="/createBO.xhtml"
+								 icon="ui-icon-user" />
+							<p:menuitem value="Convention "
+								outcome="/createConvention.xhtml"
+								icon="ui-icon-arrowrefresh-1-w" />
+								<p:menuitem value="Document Numérisé  "
+								outcome="/createFichier.xhtml"
 								icon="ui-icon-arrowrefresh-1-w" />
 						</p:submenu>
 
@@ -37,8 +40,11 @@
 					
 					<p:menuitem value="S'Enregistrer" outcome="/createUser.jsf"
 						icon="ui-icon-user" />
-					<p:menuitem value="Se connecter" outcome="/login.jsf"
+					<p:menuitem value="Se connecter" outcome="/loginbis.jsf"
 						icon="ui-icon-user" />
+						<p:menuitem value="Rechercher   "
+								outcome="/rechercher.xhtml"
+								icon="ui-icon-arrowrefresh-1-w" />
 
 					<p:menuitem value="Logout" icon="ui-icon-close"
 						style="margin-left: 500px; " url="/logout" />

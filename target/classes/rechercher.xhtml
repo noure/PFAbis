@@ -1,0 +1,32 @@
+<ui:composition template="template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="body2">
+	<p:layout>
+	<p:layoutUnit position="west">
+	<p:graphicImage name="/images/Document search.jpg"/>
+	</p:layoutUnit>
+	
+	<p:layoutUnit position="center">
+	<p:panelGrid columns="3">
+	<h:outputText value ="rechercher dans GED par : "/> <br/> <br/>
+	<h:outputText value ="Mot clé :"/> <p:inputText value="#{searchBean.motrechercher}">  <p:commandButton value="Rechercher " action="#{searchBean.rechercherParMot}"/>
+	<h:outputText value ="Text privé :"/> <p:inputText value="#{searchBean.txtprivérechercher}"> <p:commandButton value="Rechercher " action="#{searchBean.rechercherParTxtPriv}"/>
+	<h:outputText value ="Text public :"/> <p:inputText value="#{searchBean.txtpublrechercher}"><p:commandButton value="Rechercher " action="#{searchBean.rechercherParTxtPubl}"/>
+	
+	</p:inputText>
+	
+	</p:inputText>
+	
+	
+	
+	</p:layout>
+
+
+
+
+	</ui:define>
+</ui:composition>
