@@ -40,7 +40,7 @@ public class ConventionBean implements Serializable {
 	private String engagement_muni;
 	private String eng1;
 	private String eng2;
-
+	private long currentMembreID;
 	private List<Membre> membres = new ArrayList<>();
 	private List<Convention> conventions = new ArrayList<>();
 	private List<Obligation> engagementList1 = new ArrayList<Obligation>();
@@ -62,21 +62,14 @@ public class ConventionBean implements Serializable {
 	public void ajouterEngagement() {
 		Obligation obligation1 = new Obligation();
 		obligation1.setObligation(eng1);
-		obligation1.setMembre(membres.get(1));
+		Membre currentMembre=membreService.findOne(currentMembreID);
+		obligation1.setMembre(currentMembre);
 		engagmentService.create(obligation1);
 		engagementList1.add(obligation1);
 
 	}
 
-	public void ajouterEngagementbis() {
-		Obligation obligation2 = new Obligation();
-		obligation2.setObligation(eng2);
-		obligation2.setMembre(membres.get(0));
-		engagmentService.create(obligation2);
-		System.out.println("apres creation d obligation");
-		engagementList2.add(obligation2);
-
-	}
+	
 
 	public void ajouterMembre() {
 
@@ -92,7 +85,7 @@ public class ConventionBean implements Serializable {
 
 	
 	public void findEngagmentByMembre(long id){
-		
+		 currentMembreID=id;
 		Membre m1=membreService.findOne(id);
 		Set<Obligation> setObligation =m1.getObligations();
 		for(Obligation o: setObligation){
