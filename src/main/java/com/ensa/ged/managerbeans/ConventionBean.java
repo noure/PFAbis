@@ -300,4 +300,12 @@ public class ConventionBean implements Serializable {
 		this.objectifs = objectifs;
 	}
 
+	public Convention getConvention() {
+		return convention;
+	}
+
+	public void setConvention(Convention convention) {
+		this.convention = convention;
+	}
+
 }

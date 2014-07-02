@@ -162,7 +162,22 @@
 
 				<p:tab id="confirm" title="Confirmation">
 					<p:panel header="Confirmation">
-						<!--   <p:commandButton value="Submit" actionListener="#{userWizard.save}" update="growl" process="@this"/> -->
+						<p:panelGrid columns="2">
+						<p:outputLabel value =" Convention à enregistrer est ainsi : "/> 
+						<p:outputLabel value =" Sujet  de convention : "/> 
+						<p:inputText value="#{conventionBean.convention.titre}"></p:inputText>
+						<p:outputLabel value =" Date de début : "/> 
+						<p:inputText value="#{conventionBean.convention.debut}"></p:inputText>
+						<p:outputLabel value =" Date de fin : "/> 
+						<p:inputText value="#{conventionBean.convention.fin}"></p:inputText>
+						</p:panelGrid>
+						<p:panelGrid columns="1">
+						<p:outputLabel value="List des membres participants: "/>
+						<ui:repeat var="m" value="#{conventionBean.membres}" varStatus="status">
+						<p:outputLabel value="@ #{m.getNom()}" />
+						</ui:repeat>
+						</p:panelGrid>
+						
 					</p:panel>
 				</p:tab>
 			</p:wizard>
