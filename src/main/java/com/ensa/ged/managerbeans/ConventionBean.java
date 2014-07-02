@@ -60,11 +60,12 @@ public class ConventionBean implements Serializable {
 	}
 
 	public void ajouterEngagement() {
+		System.out.println(":::::::::::::::::::::::::::Ajoute D'engagement de membre d'id "+currentMembreID+"::::::::");
 		Obligation obligation1 = new Obligation();
 		obligation1.setObligation(eng1);
 		Membre currentMembre = membreService.findOne(currentMembreID);
 		obligation1.setMembre(currentMembre);
-		engagmentService.create(obligation1);
+		engagmentService.create(obligation1); 
 		engagementList1.add(obligation1);
 
 	}
@@ -82,6 +83,7 @@ public class ConventionBean implements Serializable {
 	}
 
 	public void findEngagmentByMembre(long id) {
+		System.out.println("::::::: inside  findEngagmentByMembre id= " +id);
 		currentMembreID = id;
 		Membre m1 = membreService.findOne(id);
 		Set<Obligation> setObligation = m1.getObligations();
