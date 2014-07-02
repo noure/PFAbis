@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 
@@ -92,7 +93,11 @@ public class ConventionBean implements Serializable {
 	
 	public void findEngagmentByMembre(long id){
 		
-		
+		Membre m1=membreService.findOne(id);
+		Set<Obligation> setObligation =m1.getObligations();
+		for(Obligation o: setObligation){
+			engagementList1.add(o);
+		}
 	}
 	
 	
